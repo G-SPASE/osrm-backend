@@ -5,6 +5,7 @@
 #include "engine/api/match_parameters.hpp"
 #include "engine/map_matching/bayes_classifier.hpp"
 #include "util/coordinate_calculation.hpp"
+#include "util/coordinate_tidy.hpp"
 #include "util/integer_range.hpp"
 #include "util/json_util.hpp"
 #include "util/string_util.hpp"
@@ -123,6 +124,8 @@ Status MatchPlugin::HandleRequest(const std::shared_ptr<datafacade::BaseDataFaca
         return Error("InvalidValue", "Invalid coordinate value.", json_result);
     }
 
+    // TODO: check is_sorted(ts, greater_equal), throw if not
+
     // assuming radius is the standard deviation of a normal distribution
     // that models GPS noise (in this model), x3 should give us the correct
     // search radius with > 99% confidence
@@ -150,6 +153,8 @@ Status MatchPlugin::HandleRequest(const std::shared_ptr<datafacade::BaseDataFaca
 
                        });
     }
+
+    auto tidied = util::tidy::tidy(parameters.coordinates, parameters.timestamps);
 
     auto candidates_lists = GetPhantomNodesInRange(*facade, parameters, search_radiuses);
 
