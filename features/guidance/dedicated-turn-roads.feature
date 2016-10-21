@@ -9,13 +9,13 @@ Feature: Slipways and Dedicated Turn Lanes
         Given the node map
             """
                     e
-            a b     c d
-                  h
-
-                  1
-
+            a-b --- c-d
+               \--h  \
+                   \  |  
+                  1 | |
+                    |/
                     f
-
+                    |
                     g
             """
 
@@ -67,19 +67,19 @@ Feature: Slipways and Dedicated Turn Lanes
     Scenario: Turn Instead of Ramp
         Given the node map
             """
-                    e
-            a b     c d
-                  h
-
-
-
-
-
-
-
-                    f
-
-
+                    e---.
+            a-b --- c-d |
+               `--h     |
+                   \    |
+                    |   |
+                    |   |
+                    |   |
+                    |   |
+                    |   |
+                    |   /
+                    f--/
+                    |
+                    |
                     g
             """
 
@@ -96,15 +96,15 @@ Feature: Slipways and Dedicated Turn Lanes
     Scenario: Turn Instead of Ramp
         Given the node map
             """
-                    e
-            a b     c d
-                  h
-
-
-
-                    f
-
-
+                    e---.
+            a-b --- c-d |
+               `--h     |
+                   \    |
+                    |   |
+                    |   /
+                    f--/
+                    |
+                    |
                     g
             """
 
@@ -121,15 +121,15 @@ Feature: Slipways and Dedicated Turn Lanes
     Scenario: Inner city expressway with on road
         Given the node map
             """
-            a b       c g
-                    f
-
-
-
-                      d
-
-
-
+            a-b ----- c-g
+               `----f  \
+                     \  |
+                      | |
+                      | |
+                      d--
+                      |
+                      |
+                      |
                       e
             """
 
@@ -153,12 +153,12 @@ Feature: Slipways and Dedicated Turn Lanes
         Given the node map
             """
             a   f
-
+            |   |
             b   e
-
-
-              g
-
+            |\ /|
+            | | |
+            | g |
+            |   |
             c   d
             """
 
@@ -176,11 +176,11 @@ Feature: Slipways and Dedicated Turn Lanes
         Given the node map
             """
             a   f
-
+            |   |
             b   e
-              g
-
-
+            |\g/|
+            |   |
+            |   |
             c   d
             """
 
